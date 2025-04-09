@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Site Engineer Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-900 text-white p-4">
+      <h2 class="text-xl font-bold mb-4">Menu</h2>
+      <nav class="mt-4">
+        <ul class="space-y-2 px-4">
+          <li>
+            <a href="ssindex.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <!-- Dashboard Icon -->
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="sepro.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <!-- Projects Icon -->
+              <span>Projects</span>
+            </a>
+          </li>
+          <li>
+            <a href="sedt.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <!-- Daily Tasks Icon -->
+              <span>Daily Tasks</span>
+            </a>
+          </li>
+          <li>
+            <a href="seru.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <!-- Resource Usage Icon -->
+              <span>Resource Usage</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <h1 class="text-2xl font-bold mb-4">Welcome, Site Engineer</h1>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-blue-600 text-white p-5 rounded-xl shadow">
+          <h2 class="text-lg">Active Projects</h2>
+          <p class="text-3xl font-bold">5</p>
+          <p class="text-sm mt-1">2 nearing deadline</p>
+        </div>
+        <div class="bg-yellow-500 text-white p-5 rounded-xl shadow">
+          <h2 class="text-lg">Tasks Completed</h2>
+          <p class="text-3xl font-bold">38</p>
+          <p class="text-sm mt-1">4 today</p>
+        </div>
+        <div class="bg-green-500 text-white p-5 rounded-xl shadow">
+          <h2 class="text-lg">System Status</h2>
+          <p class="text-3xl font-bold">Operational</p>
+          <p class="text-sm mt-1">Last sync: 30 min ago</p>
+        </div>
+      </div>
+
+      <!-- Activity & Metrics -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Recent Logs -->
+        <div class="bg-white p-6 rounded-xl shadow">
+          <h2 class="text-xl font-bold mb-4">Recent Site Logs</h2>
+          <ul class="space-y-4">
+            <li class="flex justify-between border-b pb-2">
+              <div>
+                <p class="font-semibold">Concrete delivered</p>
+                <p class="text-sm text-gray-500">Block A - 2 hours ago</p>
+              </div>
+              <span class="text-blue-600 font-medium">Done</span>
+            </li>
+            <li class="flex justify-between border-b pb-2">
+              <div>
+                <p class="font-semibold">Steel structure check</p>
+                <p class="text-sm text-gray-500">Block B - 4 hours ago</p>
+              </div>
+              <span class="text-yellow-600 font-medium">In Progress</span>
+            </li>
+            <li class="flex justify-between border-b pb-2">
+              <div>
+                <p class="font-semibold">Worker ID Check</p>
+                <p class="text-sm text-gray-500">Main Gate - 6 hours ago</p>
+              </div>
+              <span class="text-green-600 font-medium">Verified</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="bg-white p-6 rounded-xl shadow">
+          <h2 class="text-xl font-bold mb-4">Project Metrics</h2>
+          <ul class="space-y-3 text-gray-700">
+            <li class="flex justify-between"><span>Material Usage</span> <span class="font-semibold">78%</span></li>
+            <li class="flex justify-between"><span>Labor Allocation</span> <span class="font-semibold">92%</span></li>
+            <li class="flex justify-between"><span>Pending Issues</span> <span class="font-semibold text-red-500">3</span></li>
+            <li class="flex justify-between"><span>Inspection Passed</span> <span class="font-semibold">95%</span></li>
+            <li class="flex justify-between"><span>Weather Impact</span> <span class="font-semibold">Low</span></li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

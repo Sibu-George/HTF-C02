@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Manager - Projects Overview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-900 text-white flex flex-col">
+      <div class="flex-1">
+        <div class="text-lg font-bold p-4">Menu</div>
+        <nav class="mt-4">
+          <ul class="space-y-2 px-4">
+            <li>
+              <a href="ssindex.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="projects.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+                <span>Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="sedt.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+                <span>Daily Tasks</span>
+              </a>
+            </li>
+            <li>
+              <a href="seru.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+                <span>Resource Usage</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- User Info -->
+      <div class="p-4 border-t border-gray-700">
+        <div class="text-sm font-semibold">Alex Carter</div>
+        <div class="text-xs text-gray-400">Site Engineer</div>
+        <button class="text-sm text-red-400 mt-2 hover:underline">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Welcome, Alex Carter</h1>
+        <a href="projadmin.html" class="text-indigo-600 hover:underline">Site Engineer</a>
+      </div>
+
+      <!-- Project Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-blue-600 text-white rounded-lg p-6 shadow">
+          <div class="text-sm uppercase">Active Projects</div>
+          <div class="text-3xl font-bold mt-2">4</div>
+          <div class="text-sm mt-1">2 ahead of schedule</div>
+        </div>
+        <div class="bg-orange-500 text-white rounded-lg p-6 shadow">
+          <div class="text-sm uppercase">Total Budget</div>
+          <div class="text-3xl font-bold mt-2">$12.4M</div>
+          <div class="text-sm mt-1">This Quarter</div>
+        </div>
+        <div class="bg-white rounded-lg p-6 shadow">
+          <div class="text-sm text-gray-600 uppercase">Resource Utilization</div>
+          <div class="text-3xl font-bold mt-2 text-green-500">82%</div>
+          <div class="text-sm mt-1 text-gray-500">Efficient allocation</div>
+        </div>
+      </div>
+
+      <!-- Project Activity Logs -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-4">Recent Project Updates</h2>
+        <ul class="divide-y divide-gray-200">
+          <li class="py-3">
+            <div class="text-sm font-medium">Downtown Office Tower – Progress Report submitted</div>
+            <div class="text-xs text-gray-500">2 hours ago</div>
+          </li>
+          <li class="py-3">
+            <div class="text-sm font-medium">Resource allocation updated for Hospital Renovation</div>
+            <div class="text-xs text-gray-500">4 hours ago</div>
+          </li>
+          <li class="py-3">
+            <div class="text-sm font-medium">Budget revised for Riverfront Residential</div>
+            <div class="text-xs text-gray-500">Yesterday</div>
+          </li>
+          <li class="py-3">
+            <div class="text-sm font-medium">Team meeting scheduled for Metro Rail Extension</div>
+            <div class="text-xs text-gray-500">2 days ago</div>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

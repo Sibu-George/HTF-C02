@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Manager - Daily Tasks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-900 text-white flex flex-col">
+      <div class="p-6 text-xl font-bold">Menu</div>
+
+      <!-- ✅ Custom Sidebar Navbar -->
+      <nav class="mt-4">
+        <ul class="space-y-2 px-4">
+          <li>
+            <a href="pmindex.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="propro.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Projects</span>
+            </a>
+          </li>
+          <li>
+            <a href="prologs.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Logs</span>
+            </a>
+          </li>
+          <li>
+            <a href="prodt.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Daily Tasks</span>
+            </a>
+          </li>
+          <li>
+            <a href="proru.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Resource Usage</span>
+            </a>
+          </li>
+          <li>
+            <a href="predicition.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Prediction</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="mt-auto p-4 border-t border-gray-700">
+        <div class="text-sm">Project Manager</div>
+        <button class="text-sm text-red-400 mt-1 hover:underline">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Daily Tasks</h1>
+        <a href="#" class="text-blue-600 font-medium hover:underline">Manage Tasks</a>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-blue-500 text-white p-6 rounded-lg shadow">
+          <div class="text-sm uppercase">Tasks Today</div>
+          <div class="text-3xl font-bold">18</div>
+          <div class="text-sm mt-2">12 completed</div>
+        </div>
+        <div class="bg-orange-400 text-white p-6 rounded-lg shadow">
+          <div class="text-sm uppercase">Assigned Team Members</div>
+          <div class="text-3xl font-bold">6</div>
+          <div class="text-sm mt-2">Across 4 projects</div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <div class="text-sm uppercase text-gray-500">Next Review</div>
+          <div class="text-3xl font-bold text-green-600">3:00 PM</div>
+          <div class="text-sm mt-2 text-gray-500">With Site Engineer</div>
+        </div>
+      </div>
+
+      <!-- Task Lists -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pending Tasks -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-4">Pending Tasks</h2>
+          <ul class="space-y-4">
+            <li class="border-b pb-2">
+              <div class="font-medium">Check plumbing at Sunset Villas</div>
+              <div class="text-sm text-gray-500">Assigned to Karen - Due by 12 PM</div>
+            </li>
+            <li class="border-b pb-2">
+              <div class="font-medium">Inspect steel framework at Greenview</div>
+              <div class="text-sm text-gray-500">Assigned to John - Due by 3 PM</div>
+            </li>
+            <li class="border-b pb-2">
+              <div class="font-medium">Review procurement list for Eastside Project</div>
+              <div class="text-sm text-gray-500">Assigned to Raj - Due EOD</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Completed Tasks -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-4">Completed Tasks</h2>
+          <ul class="space-y-4">
+            <li class="border-b pb-2">
+              <div class="font-medium">Submit safety checklist - Skyline Towers</div>
+              <div class="text-sm text-gray-500">Completed by Alice - 9:00 AM</div>
+            </li>
+            <li class="border-b pb-2">
+              <div class="font-medium">Daily staff attendance submitted</div>
+              <div class="text-sm text-gray-500">Completed by Admin - 8:30 AM</div>
+            </li>
+            <li class="border-b pb-2">
+              <div class="font-medium">Update material usage logs</div>
+              <div class="text-sm text-gray-500">Completed by Mike - 7:45 AM</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
