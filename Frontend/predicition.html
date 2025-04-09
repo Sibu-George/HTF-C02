@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construction Prediction Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+    }
+    .main-content {
+      flex: 1;
+      padding: 24px;
+      background-color: #f8fafc;
+    }
+    .welcome-header {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 24px;
+    }
+    .stats-cards {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .card {
+      flex: 1;
+      padding: 20px;
+      border-radius: 8px;
+      color: white;
+    }
+    .card-blue {
+      background-color: #3182ce;
+    }
+    .card-orange {
+      background-color: #ed8936;
+    }
+    .card-green {
+      background-color: #c6f6d5;
+      color: #276749;
+    }
+    .card-title {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    .card-value {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .card-subtitle {
+      font-size: 14px;
+    }
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    .prediction-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-row {
+      display: flex;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    label {
+      font-weight: bold;
+    }
+    select, button {
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+    button {
+      background-color: #3182ce;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #2c5282;
+    }
+    .prediction-result {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 8px;
+      background-color: #f0f9ff;
+      border: 1px solid #bee3f8;
+    }
+    .accuracy-badge {
+      background-color: #c6f6d5;
+      color: #276749;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+    .metrics-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .metric-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
+    .metric-value {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar with inline CSS -->
+  <aside style="width: 16rem; background-color: #1a202c; color: white; display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <div style="font-size: 1.5rem; font-weight: bold; padding: 1rem;">Menu</div>
+      <nav style="margin-top: 0.5rem;">
+        <ul style="padding: 0 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li>
+            <a href="pmindex.html" style="color: #cbd5e0; text-decoration: none; display: block; padding: 0.5rem 0; transition: color 0.2s;">Dashboard</a>
+          </li>
+          <li>
+            <a href="propro.html" style="color: #cbd5e0; text-decoration: none; display: block; padding: 0.5rem 0; transition: color 0.2s;">Projects</a>
+          </li>
+          <li>
+            <a href="prologs.html" style="color: #cbd5e0; text-decoration: none; display: block; padding: 0.5rem 0; transition: color 0.2s;">Logs</a>
+          </li>
+          <li>
+            <a href="prodt.html" style="color: #cbd5e0; text-decoration: none; display: block; padding: 0.5rem 0; transition: color 0.2s;">Daily Tasks</a>
+          </li>
+          <li>
+            <a href="proru.html" style="color: #cbd5e0; text-decoration: none; display: block; padding: 0.5rem 0; transition: color 0.2s;">Resource Usage</a>
+          </li>
+          <li>
+            <a href="predicition.html" style="color: #cbd5e0; text-decoration: none; display: block; padding: 0.5rem 0; transition: color 0.2s;">Prediction</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    
+    <!-- User info section with inline CSS -->
+    <div style="padding: 1rem; border-top: 1px solid #2d3748; margin-top: auto;">
+      <div style="font-weight: bold;">Mike Johnson</div>
+      <div style="font-size: 0.875rem; color: #a0aec0;">Project Manager</div>
+      <div style="color: #f56565; margin-top: 0.5rem; cursor: pointer;">Logout</div>
+    </div>
+  </aside>
+  
+  <div class="main-content">
+    <h1 class="welcome-header">Welcome, Project Manager</h1>
+    
+    <div class="stats-cards">
+      <div class="card card-blue">
+        <div class="card-title">Resource Cost Prediction <span class="accuracy-badge">94%</span></div>
+        <div class="card-value">₹6,850/hr</div>
+        <div class="card-subtitle">Based on current market rates</div>
+      </div>
+      
+      <div class="card card-orange">
+        <div class="card-title">Transportation Time <span class="accuracy-badge">89%</span></div>
+        <div class="card-value">42 min</div>
+        <div class="card-subtitle">Average for current routes</div>
+      </div>
+      
+      <div class="card card-green">
+        <div class="card-title">Weather Risk <span class="accuracy-badge">82%</span></div>
+        <div class="card-value">15%</div>
+        <div class="card-subtitle">Chance of rain today</div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2 class="section-title">Prediction Tool <span class="accuracy-badge">92% Accuracy</span></h2>
+      
+      <div class="prediction-form">
+        <div class="form-group">
+          <label for="prediction-type">Select Prediction Type:</label>
+          <select id="prediction-type">
+            <option value="resource">Resource Cost Prediction</option>
+            <option value="transportation">Transportation Time</option>
+            <option value="weather">Chance of Rain</option>
+          </select>
+        </div>
+        
+        <!-- Resource Cost Prediction Options -->
+        <div id="resource-options">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="resource-type">Resource Type:</label>
+              <select id="resource-type">
+                <option value="concrete">Concrete</option>
+                <option value="steel">Steel</option>
+                <option value="lumber">Lumber</option>
+                <option value="labor">Labor</option>
+                <option value="electrical">Electrical</option>
+                <option value="plumbing">Plumbing</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="resource-quantity">Quantity:</label>
+              <select id="resource-quantity">
+                <option value="small">Small (0-100 units)</option>
+                <option value="medium" selected>Medium (101-500 units)</option>
+                <option value="large">Large (501-1000 units)</option>
+                <option value="xlarge">XL (1000+ units)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="resource-quality">Quality Grade:</label>
+              <select id="resource-quality">
+                <option value="economy">Economy</option>
+                <option value="standard" selected>Standard</option>
+                <option value="premium">Premium</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="resource-supplier">Supplier:</label>
+              <select id="resource-supplier">
+                <option value="supplier-a">Supplier A</option>
+                <option value="supplier-b">Supplier B</option>
+                <option value="supplier-c">Supplier C</option>
+                <option value="local">Local Vendors</option>
+                <option value="international">International</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Transportation Time Options -->
+        <div id="transportation-options" style="display: none;">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="transportation-origin">Origin:</label>
+              <select id="transportation-origin">
+                <option value="site-a">Site A</option>
+                <option value="site-b">Site B</option>
+                <option value="site-c">Site C</option>
+                <option value="site-d">Site D</option>
+                <option value="site-e">Site E</option>
+                <option value="hq">Headquarters</option>
+                <option value="warehouse-main">Main Warehouse</option>
+                <option value="warehouse-east">East Warehouse</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="transportation-destination">Destination:</label>
+              <select id="transportation-destination">
+                <option value="site-a">Site A</option>
+                <option value="site-b">Site B</option>
+                <option value="site-c">Site C</option>
+                <option value="site-d">Site D</option>
+                <option value="site-e">Site E</option>
+                <option value="hq" selected>Headquarters</option>
+                <option value="warehouse-main">Main Warehouse</option>
+                <option value="warehouse-east">East Warehouse</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="transportation-load">Load Type:</label>
+              <select id="transportation-load">
+                <option value="personnel">Personnel</option>
+                <option value="light-materials">Light Materials</option>
+                <option value="heavy-materials" selected>Heavy Materials</option>
+                <option value="equipment">Equipment</option>
+                <option value="mixed">Mixed Load</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="transportation-time">Time of Day:</label>
+              <select id="transportation-time">
+                <option value="early-morning">Early Morning (5-7am)</option>
+                <option value="morning">Morning (7-10am)</option>
+                <option value="midday" selected>Midday (10am-2pm)</option>
+                <option value="afternoon">Afternoon (2-5pm)</option>
+                <option value="evening">Evening (5-8pm)</option>
+                <option value="night">Night (8pm-5am)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Weather Prediction Options -->
+        <div id="weather-options" style="display: none;">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="weather-site">Site Location:</label>
+              <select id="weather-site">
+                <option value="site-a">Site A - Downtown</option>
+                <option value="site-b">Site B - Riverside</option>
+                <option value="site-c">Site C - Industrial Park</option>
+                <option value="site-d">Site D - West County</option>
+                <option value="site-e">Site E - Eastside</option>
+                <option value="site-f">Site F - North Hills</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="weather-date">Forecast Date:</label>
+              <select id="weather-date">
+                <option value="today">Today</option>
+                <option value="tomorrow">Tomorrow</option>
+                <option value="day2">2 Days From Now</option>
+                <option value="day3">3 Days From Now</option>
+                <option value="day4">4 Days From Now</option>
+                <option value="day5">5 Days From Now</option>
+                <option value="next-week">Next Week</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="weather-season">Season:</label>
+              <select id="weather-season">
+                <option value="spring">Spring</option>
+                <option value="summer">Summer</option>
+                <option value="fall" selected>Fall</option>
+                <option value="winter">Winter</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="weather-type">Weather Type:</label>
+              <select id="weather-type">
+                <option value="rain" selected>Rain</option>
+                <option value="snow">Snow</option>
+                <option value="extreme-heat">Extreme Heat</option>
+                <option value="high-winds">High Winds</option>
+                <option value="thunderstorm">Thunderstorm</option>
+                <option value="fog">Fog</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <button id="predict-button">Generate Prediction</button>
+      </div>
+      
+      <div class="prediction-result">
+        <h3>Prediction Result:</h3>
+        <p id="prediction-output">Select a prediction type and click "Generate Prediction" to see results.</p>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2 class="section-title">Prediction Metrics</h2>
+      
+      <div class="metrics-list">
+        <div class="metric-item">
+          <span>Resource Cost Accuracy:</span>
+          <span class="metric-value">94%</span>
+        </div>
+        <div class="metric-item">
+          <span>Transportation Time Accuracy:</span>
+          <span class="metric-value">89%</span>
+        </div>
+        <div class="metric-item">
+          <span>Weather Prediction Accuracy:</span>
+          <span class="metric-value">82%</span>
+        </div>
+        <div class="metric-item">
+          <span>Predictions Made Today:</span>
+          <span class="metric-value">12</span>
+        </div>
+        <div class="metric-item">
+          <span>Average Prediction Time:</span>
+          <span class="metric-value">2.3 sec</span>
+        </div>
+        <div class="metric-item">
+          <span>Cost Savings This Month:</span>
+          <span class="metric-value">₹9,85,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show/hide appropriate options based on prediction type
+    document.getElementById('prediction-type').addEventListener('change', function() {
+      const type = this.value;
+      document.getElementById('resource-options').style.display = type === 'resource' ? 'block' : 'none';
+      document.getElementById('transportation-options').style.display = type === 'transportation' ? 'block' : 'none';
+      document.getElementById('weather-options').style.display = type === 'weather' ? 'block' : 'none';
+    });
+    
+    // Mock prediction generation
+    document.getElementById('predict-button').addEventListener('click', function() {
+      const type = document.getElementById('prediction-type').value;
+      let result = '';
+      
+      if (type === 'resource') {
+        const resource = document.getElementById('resource-type').value;
+        const quantity = document.getElementById('resource-quantity').value;
+        const quality = document.getElementById('resource-quality').value;
+        const supplier = document.getElementById('resource-supplier').value;
+        
+        // Generate a predicted cost based on selections (in INR)
+        let baseCost = 0;
+        switch(resource) {
+          case 'concrete': baseCost = 9800; break;       // ₹9,800 per cubic meter
+          case 'steel': baseCost = 72500; break;         // ₹72,500 per ton
+          case 'lumber': baseCost = 325; break;          // ₹325 per board foot
+          case 'labor': baseCost = 6250; break;          // ₹6,250 per hour
+          case 'electrical': baseCost = 7800; break;     // ₹7,800 per hour
+          case 'plumbing': baseCost = 6950; break;       // ₹6,950 per hour
+        }
+        
+        // Adjust for quantity
+        const quantityMultiplier = {
+          'small': 1,
+          'medium': 0.95,
+          'large': 0.85,
+          'xlarge': 0.78
+        };
+        
+        // Adjust for quality
+        const qualityMultiplier = {
+          'economy': 0.8,
+          'standard': 1,
+          'premium': 1.25,
+          'custom': 1.6
+        };
+        
+        // Adjust for supplier
+        const supplierMultiplier = {
+          'supplier-a': 1,
+          'supplier-b': 0.95,
+          'supplier-c': 1.02,
+          'local': 1.1,
+          'international': 0.85
+        };
+        
+        const finalCost = baseCost * quantityMultiplier[quantity] * qualityMultiplier[quality] * supplierMultiplier[supplier];
+        
+        // Format result based on resource type with INR currency symbol
+        const formattedCost = new Intl.NumberFormat('en-IN', { 
+          style: 'currency', 
+          currency: 'INR',
+          maximumFractionDigits: 0,
+          currencyDisplay: 'symbol'
+        }).format(finalCost);
+        
+        if (resource === 'concrete') {
+          result = `Predicted cost for ${quality} grade ${resource}: ${formattedCost} per cubic meter`;
+        } else if (resource === 'steel') {
+          result = `Predicted cost for ${quality} grade ${resource}: ${formattedCost} per ton`;
+        } else if (resource === 'lumber') {
+          result = `Predicted cost for ${quality} grade ${resource}: ${formattedCost} per board foot`;
+        } else {
+          result = `Predicted cost for ${quality} grade ${resource}: ${formattedCost} per hour`;
+        }
+        
+        result += `\nSupplier: ${supplier.replace('-', ' ')}, Quantity: ${quantity}`;
+        
+      } else if (type === 'transportation') {
+        const origin = document.getElementById('transportation-origin').value;
+        const destination = document.getElementById('transportation-destination').value;
+        const loadType = document.getElementById('transportation-load').value;
+        const timeOfDay = document.getElementById('transportation-time').value;
+        
+        // Base time (minutes) for each origin-destination pair
+        const baseTimeMatrix = {
+          'site-a': {
+            'site-b': 15, 'site-c': 25, 'site-d': 18, 'site-e': 30, 'hq': 35, 
+            'warehouse-main': 20, 'warehouse-east': 40, 'site-a': 0
+          },
+          'site-b': {
+            'site-a': 15, 'site-c': 12, 'site-d': 22, 'site-e': 28, 'hq': 42, 
+            'warehouse-main': 18, 'warehouse-east': 35, 'site-b': 0
+          },
+          'site-c': {
+            'site-a': 25, 'site-b': 12, 'site-d': 30, 'site-e': 40, 'hq': 55, 
+            'warehouse-main': 30, 'warehouse-east': 28, 'site-c': 0
+          },
+          'site-d': {
+            'site-a': 18, 'site-b': 22, 'site-c': 30, 'site-e': 15, 'hq': 48, 
+            'warehouse-main': 25, 'warehouse-east': 42, 'site-d': 0
+          },
+          'site-e': {
+            'site-a': 30, 'site-b': 28, 'site-c': 40, 'site-d': 15, 'hq': 62, 
+            'warehouse-main': 40, 'warehouse-east': 22, 'site-e': 0
+          },
+          'hq': {
+            'site-a': 35, 'site-b': 42, 'site-c': 55, 'site-d': 48, 'site-e': 62, 
+            'warehouse-main': 15, 'warehouse-east': 28, 'hq': 0
+          },
+          'warehouse-main': {
+            'site-a': 20, 'site-b': 18, 'site-c': 30, 'site-d': 25, 'site-e': 40, 
+            'hq': 15, 'warehouse-east': 32, 'warehouse-main': 0
+          },
+          'warehouse-east': {
+            'site-a': 40, 'site-b': 35, 'site-c': 28, 'site-d': 42, 'site-e': 22, 
+            'hq': 28, 'warehouse-main': 32, 'warehouse-east': 0
+          }
+        };
+        
+        // Get base time
+        let baseTime = baseTimeMatrix[origin][destination];
+        
+        // Adjust for load type
+        const loadMultiplier = {
+          'personnel': 0.9,
+          'light-materials': 1,
+          'heavy-materials': 1.2,
+          'equipment': 1.3,
+          'mixed': 1.1
+        };
+        
+        // Adjust for time of day
+        const timeMultiplier = {
+          'early-morning': 0.8,
+          'morning': 1.2,
+          'midday': 1.0,
+          'afternoon': 1.3,
+          'evening': 1.15,
+          'night': 0.7
+        };
+        
+        const finalTime = Math.round(baseTime * loadMultiplier[loadType] * timeMultiplier[timeOfDay]);
+        
+        // Format location names to be more readable
+        const formatLocation = (loc) => {
+          return loc.replace('site-', 'Site ').replace('warehouse-', 'Warehouse ').toUpperCase();
+        };
+        
+        result = `Estimated transportation time from ${formatLocation(origin)} to ${formatLocation(destination)}: ${finalTime} minutes\n`;
+        result += `Load Type: ${loadType.replace('-', ' ')}, Time of Day: ${timeOfDay.replace('-', ' ')}`;
+        
+      } else if (type === 'weather') {
+        const site = document.getElementById('weather-site').value;
+        const forecastDate = document.getElementById('weather-date').value;
+        const season = document.getElementById('weather-season').value;
+        const weatherType = document.getElementById('weather-type').value;
+        
+        // Base chance for each site
+        const baseChance = {
+          'site-a': 15,
+          'site-b': 25,
+          'site-c': 8,
+          'site-d': 12,
+          'site-e': 18,
+          'site-f': 22
+        };
+        
+        // Adjust for forecast date (further out = less accurate)
+        const dateMultiplier = {
+          'today': 1,
+          'tomorrow': 1.1,
+          'day2': 1.2,
+          'day3': 1.4,
+          'day4': 1.6,
+          'day5': 1.8,
+          'next-week': 2
+        };
+        
+        // Adjust for season
+        const seasonMultiplier = {
+          'spring': 1.3,
+          'summer': 0.8,
+          'fall': 1.1,
+          'winter': 1.5
+        };
+        
+        // Adjust for weather type
+        const typeMultiplier = {
+          'rain': 1,
+          'snow': 0.6,
+          'extreme-heat': 0.4,
+          'high-winds': 0.8,
+          'thunderstorm': 0.7,
+          'fog': 1.2
+        };
+        
+        let chanceValue = baseChance[site] * seasonMultiplier[season] * typeMultiplier[weatherType];
+        
+        // Add some variability based on forecast date
+        if (forecastDate !== 'today') {
+          chanceValue = chanceValue * dateMultiplier[forecastDate] * (0.9 + Math.random() * 0.2);
+        }
+        
+        // Cap at 100%
+        chanceValue = Math.min(Math.round(chanceValue), 100);
+        
+        // Format site name
+        const siteName = site.replace('site-', 'Site ').split(' - ')[0];
+        const siteLocation = site.split(' - ')[1] || '';
+        
+        result = `Weather forecast for ${siteName}${siteLocation ? ' (' + siteLocation + ')' : ''}: ${chanceValue}% chance of ${weatherType.replace('-', ' ')}\n`;
+        result += `Date: ${forecastDate.replace('-', ' ')}, Season: ${season}`;
+      }
+      
+      document.getElementById('prediction-output').textContent = result;
+    });
+  </script>
+</body>
+</html>

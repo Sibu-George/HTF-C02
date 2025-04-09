@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Site Engineer Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="flex min-h-screen">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-900 text-white flex flex-col justify-between">
+      <div>
+        <h2 class="text-2xl font-bold p-4 border-b border-gray-700">Menu</h2>
+        <nav class="mt-4">
+          <ul class="space-y-2 px-4">
+            <li>
+              <a href="ssindex.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+                <!-- Dashboard Icon -->
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="sepro.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+                <!-- Projects Icon -->
+                <span>Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="sedt.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+                <!-- Daily Tasks Icon -->
+                <span>Daily Tasks</span>
+              </a>
+            </li>
+            <li>
+              <a href="seru.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+                <!-- Resource Usage Icon -->
+                <span>Resource Usage</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      
+      <!-- Logout Button -->
+      <div class="p-4 border-t border-gray-700">
+        <div class="flex items-center">
+          <div class="mr-3">
+            <p class="text-sm text-gray-300">Site Engineer</p>
+            <p class="text-xs text-gray-400">Engineer</p>
+          </div>
+        </div>
+        <a href="login.html" class="block mt-3 text-red-400 hover:text-red-300 text-sm font-medium">
+          Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <h1 class="text-2xl font-bold mb-6">Welcome, Site Engineer</h1>
+
+      <!-- Dashboard Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <!-- Labour On Site -->
+        <div class="bg-blue-600 text-white p-5 rounded-xl shadow">
+          <h2 class="text-lg">Labour On Site</h2>
+          <p class="text-3xl font-bold">58</p>
+          <p class="text-sm mt-1">12 new this week</p>
+        </div>
+
+        <!-- Users -->
+        <div class="bg-yellow-500 text-white p-5 rounded-xl shadow">
+          <h2 class="text-lg">Users</h2>
+          <p class="text-3xl font-bold">24</p>
+          <p class="text-sm mt-1">3 new this month</p>
+        </div>
+
+        <!-- System Status -->
+        <div class="bg-white text-green-600 p-5 rounded-xl shadow border border-green-300">
+          <h2 class="text-lg font-semibold">System Status</h2>
+          <p class="text-3xl font-bold">100%</p>
+          <p class="text-sm text-gray-600">Last backup: 2 hours ago</p>
+        </div>
+      </div>
+
+      <!-- Panels -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Recent Activity -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-xl font-bold mb-4">Recent Activity</h2>
+          <ul class="space-y-2 text-gray-700 text-sm">
+            <li>Labour check-in - John Smith - 2 hours ago</li>
+            <li>New material request - Sarah Kim - 3 hours ago</li>
+            <li>Inspection passed - Zone A - 4 hours ago</li>
+            <li>Task assigned - Amit Patel - 5 hours ago</li>
+            <li>Labour check-out - David Lee - 6 hours ago</li>
+          </ul>
+        </div>
+
+        <!-- System Metrics -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-xl font-bold mb-4">System Metrics</h2>
+          <ul class="text-gray-700 space-y-2 text-sm">
+            <li><strong>Database Size:</strong> 230 MB</li>
+            <li><strong>API Requests (24h):</strong> 12.4K</li>
+            <li><strong>Avg. Response Time:</strong> 243 ms</li>
+            <li><strong>Active Sessions:</strong> 18</li>
+            <li><strong>Failed Logins (24h):</strong> 3</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-900 text-white min-h-screen">
+      <div class="p-6 text-2xl font-bold">Menu</div>
+      <nav class="mt-4">
+        <ul class="space-y-2 px-4">
+          <li>
+            <a href="adindex.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="projadmin.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Projects</span>
+            </a>
+          </li>
+          <li></li>
+            <a href="admindaily.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Daily Tasks</span>
+            </a>
+          </li>
+          <li>
+            <a href="adindex.html" class="flex items-center space-x-2 text-gray-300 hover:text-white">
+              <span>Resource Usage</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="absolute bottom-0 left-0 w-full p-4">
+        <div class="text-sm">Admin User</div>
+        <div class="text-xs text-gray-400">Admin</div>
+        <a href="login.html" class="text-sm text-red-400 hover:underline mt-1 block">Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+      <h1 class="text-2xl font-bold mb-6">Welcome, Admin User</h1>
+      <div class="grid grid-cols-3 gap-6 mb-6">
+        <div class="bg-blue-600 text-white p-6 rounded-lg">
+          <div class="text-xl font-semibold">Active Projects</div>
+          <div class="text-3xl font-bold">12</div>
+          <div class="text-sm mt-2">8 on schedule</div>
+        </div>
+        <div class="bg-orange-500 text-white p-6 rounded-lg">
+          <div class="text-xl font-semibold">Users</div>
+          <div class="text-3xl font-bold">24</div>
+          <div class="text-sm mt-2">3 new this month</div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <div class="text-xl font-semibold text-green-600">System Status</div>
+          <div class="text-3xl font-bold text-green-700">100%</div>
+          <div class="text-sm mt-2 text-gray-500">Last backup: 2 hours ago</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6">
+        <!-- Recent Activity -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-xl font-semibold mb-4">Recent Activity</h2>
+          <ul class="space-y-2">
+            <li class="text-sm text-gray-700">User login from new device - John Smith - 2 hours ago</li>
+            <li class="text-sm text-gray-700">User login from new device - John Smith - 2 hours ago</li>
+            <li class="text-sm text-gray-700">User login from new device - John Smith - 2 hours ago</li>
+            <li class="text-sm text-gray-700">User login from new device - John Smith - 2 hours ago</li>
+            <li class="text-sm text-gray-700">User login from new device - John Smith - 2 hours ago</li>
+          </ul>
+        </div>
+
+        <!-- System Metrics -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-xl font-semibold mb-4">System Metrics</h2>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li>Database Size: <strong>230 MB</strong></li>
+            <li>API Requests (24h): <strong>12.4K</strong></li>
+            <li>Avg. Response Time: <strong>243 ms</strong></li>
+            <li>Active Sessions: <strong>18</strong></li>
+            <li>Failed Logins (24h): <strong>3</strong></li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

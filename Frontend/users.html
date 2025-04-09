@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Resource - User Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div class="flex min-h-screen">
+    <!-- Sidebar - simplified version -->
+    <aside id="sidebar" class="w-64 hidden md:flex flex-col bg-gray-800 text-white">
+      <!-- Will be populated by JavaScript -->
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Header -->
+      <header class="bg-white shadow-sm border-b">
+        <div class="flex h-16 items-center px-4">
+          <button id="mobile-menu-button" class="md:hidden mr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <line x1="4" x2="20" y1="12" y2="12"></line>
+              <line x1="4" x2="20" y1="6" y2="6"></line>
+              <line x1="4" x2="20" y1="18" y2="18"></line>
+            </svg>
+          </button>
+          <h2 class="text-lg font-semibold">User Management</h2>
+          <div class="ml-auto flex items-center space-x-4">
+            <button id="logout-button" class="text-sm text-gray-700 hover:text-blue-600">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main content area -->
+      <main class="p-6">
+        <div class="container mx-auto">
+          <div class="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
+            <h1 class="text-2xl font-bold">Users</h1>
+            <button id="new-user-btn" class="inline-flex items-center justify-center rounded-md bg-blue-800 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                <line x1="12" x2="12" y1="5" y2="19"></line>
+                <line x1="5" x2="19" y1="12" y2="12"></line>
+              </svg>
+              Add User
+            </button>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold mb-2">Total Users</h3>
+              <p id="total-users" class="text-3xl font-bold">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold mb-2">Active Projects</h3>
+              <p id="active-projects" class="text-3xl font-bold">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold mb-2">Resource Utilization</h3>
+              <div class="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                <div id="resource-utilization" class="h-full bg-green-500" style="width: 75%"></div>
+              </div>
+              <p class="text-right text-sm text-gray-500 mt-1">75%</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow mb-6">
+            <div class="p-4">
+              <div class="flex flex-col md:flex-row gap-4">
+                <div class="relative flex-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-2 top-2.5 h-4 w-4 text-gray-500">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                  </svg>
+                  <input
+                    id="search-input"
+                    type="text"
+                    placeholder="Search users by name or email..."
+                    class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm pl-8"
+                  />
+                </div>
+                
+                <select id="role-filter" class="h-10 w-full md:w-[180px] rounded-md border border-gray-300 px-3 py-2 text-sm">
+                  <option value="all">All Roles</option>
+                  <option value="admin">Admin</option>
+                  <option value="project_manager">Project Manager</option>
+                  <option value="site_engineer">Site Engineer</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead class="bg-gray-50 border-b">
+                  <tr>
+                    <th class="px-6 py-3 text-left font-medium">Name</th>
+                    <th class="px-6 py-3 text-left font-medium">Email</th>
+                    <th class="px-6 py-3 text-left font-medium">Role</th>
+                    <th class="px-6 py-3 text-left font-medium">Projects</th>
+                    <th class="px-6 py-3 text-left font-medium">Status</th>
+                    <th class="px-6 py-3 text-right font-medium">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-body">
+                  <!-- Users will be populated here by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+            
+            <div id="empty-state" class="hidden flex flex-col items-center justify-center p-10 text-center">
+              <p class="text-gray-500 mb-2">No users found</p>
+              <p class="text-sm text-gray-500">Try adjusting your search or filters</p>
+            </div>
+          </div>
+          
+          <!-- User Activity Chart -->
+          <div class="bg-white rounded-lg shadow mt-8 p-6">
+            <h2 class="text-xl font-semibold mb-4">User Activity</h2>
+            <div class="h-80">
+              <canvas id="user-activity-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- User Detail Modal -->
+  <div id="user-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="fixed inset-0 bg-black bg-opacity-50" id="modal-overlay"></div>
+    <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full mx-4 z-10 overflow-hidden">
+      <div class="flex items-center justify-between p-6 border-b">
+        <h3 class="text-xl font-semibold" id="modal-title">User Details</h3>
+        <button id="close-modal-btn" class="text-gray-500 hover:text-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="p-6" id="modal-content">
+        <!-- Modal content will be populated here -->
+      </div>
+      <div class="flex items-center justify-end p-6 border-t">
+        <button id="close-modal-button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 mr-2">Close</button>
+        <button id="edit-user-button" class="px-4 py-2 bg-blue-800 text-white rounded-md hover:bg-blue-700">Edit User</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="fixed bottom-4 right-4 z-50"></div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+  <script src="common.js"></script>
+  <script src="users.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Resource - Tasks</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div class="flex min-h-screen">
+    <!-- Sidebar - simplified version -->
+    <aside id="sidebar" class="w-64 hidden md:flex flex-col bg-gray-800 text-white">
+      <!-- Will be populated by JavaScript -->
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Header -->
+      <header class="bg-white shadow-sm border-b">
+        <div class="flex h-16 items-center px-4">
+          <button id="mobile-menu-button" class="md:hidden mr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <line x1="4" x2="20" y1="12" y2="12"></line>
+              <line x1="4" x2="20" y1="6" y2="6"></line>
+              <line x1="4" x2="20" y1="18" y2="18"></line>
+            </svg>
+          </button>
+          <h2 class="text-lg font-semibold">Tasks</h2>
+          <div class="ml-auto flex items-center space-x-4">
+            <button id="logout-button" class="text-sm text-gray-700 hover:text-blue-600">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main content area -->
+      <main class="p-6">
+        <div class="container mx-auto">
+          <div class="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
+            <h1 class="text-2xl font-bold">Tasks</h1>
+            <button id="new-task-btn" class="inline-flex items-center justify-center rounded-md bg-blue-800 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+                <line x1="12" x2="12" y1="5" y2="19"></line>
+                <line x1="5" x2="19" y1="12" y2="12"></line>
+              </svg>
+              Create Task
+            </button>
+          </div>
+          
+          <div class="grid gap-6 md:grid-cols-4 mb-6">
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold mb-2">Total Tasks</h3>
+              <p id="total-tasks" class="text-3xl font-bold">0</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold mb-2">In Progress</h3>
+              <p id="in-progress-tasks" class="text-3xl font-bold">0</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold mb-2">Completed</h3>
+              <p id="completed-tasks" class="text-3xl font-bold">0</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold mb-2">Delayed</h3>
+              <p id="delayed-tasks" class="text-3xl font-bold text-red-500">0</p>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow mb-6">
+            <div class="p-4">
+              <div class="flex flex-col md:flex-row gap-4">
+                <div class="relative flex-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-2 top-2.5 h-4 w-4 text-gray-500">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                  </svg>
+                  <input
+                    id="search-input"
+                    type="text"
+                    placeholder="Search tasks..."
+                    class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm pl-8"
+                  />
+                </div>
+                
+                <select id="priority-filter" class="h-10 w-full md:w-[180px] rounded-md border border-gray-300 px-3 py-2 text-sm">
+                  <option value="all">All Priorities</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+                
+                <button id="filter-button" class="h-10 px-4 py-2 rounded-md border border-gray-300 bg-white hover:bg-gray-100 text-sm flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                  </svg>
+                  <span>More Filters</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <div class="inline-flex h-10 items-center justify-center rounded-md bg-gray-200 p-1 text-gray-500">
+              <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm bg-white text-gray-900" data-status="all">All Tasks</button>
+              <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" data-status="not_started">Not Started</button>
+              <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" data-status="in_progress">In Progress</button>
+              <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" data-status="completed">Completed</button>
+              <button class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" data-status="delayed">Delayed</button>
+            </div>
+          </div>
+          
+          <div id="tasks-container" class="space-y-4">
+            <!-- Tasks will be populated here by JavaScript -->
+          </div>
+          
+          <div id="empty-state" class="hidden flex flex-col items-center justify-center p-10 text-center">
+            <p class="text-gray-500 mb-2">No tasks found</p>
+            <p class="text-sm text-gray-500">Try adjusting your search or filters</p>
+          </div>
+          
+          <!-- Task Status Chart -->
+          <div class="bg-white rounded-lg shadow mt-8 p-6">
+            <h2 class="text-xl font-semibold mb-4">Tasks Overview</h2>
+            <div class="h-80">
+              <canvas id="tasks-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  
+  <!-- Task Update Modal -->
+  <div id="task-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="fixed inset-0 bg-black bg-opacity-50" id="modal-overlay"></div>
+    <div class="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 z-10 overflow-hidden">
+      <div class="flex items-center justify-between p-6 border-b">
+        <h3 class="text-xl font-semibold" id="modal-title">Update Task Status</h3>
+        <button id="close-modal-btn" class="text-gray-500 hover:text-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="p-6" id="modal-content">
+        <div>
+          <p class="font-medium mb-2" id="task-name">Task Name</p>
+          <p class="text-sm text-gray-500 mb-6" id="task-project">Project Name</p>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">Current Status</label>
+            <p id="current-status" class="inline-block rounded-full px-2.5 py-0.5 text-xs bg-gray-100 text-gray-800">Not started</p>
+          </div>
+          <div class="mb-6">
+            <label for="status-select" class="block text-sm font-medium mb-1">New Status</label>
+            <select id="status-select" class="w-full rounded-md border border-gray-300 px-3 py-2">
+              <option value="not_started">Not Started</option>
+              <option value="in_progress">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="delayed">Delayed</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label for="status-notes" class="block text-sm font-medium mb-1">Status Update Notes</label>
+            <textarea id="status-notes" class="w-full rounded-md border border-gray-300 px-3 py-2" rows="3" placeholder="Provide context for this status change..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center justify-end p-6 border-t">
+        <button id="cancel-update" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 mr-2">Cancel</button>
+        <button id="save-status-update" class="px-4 py-2 bg-blue-800 text-white rounded-md hover:bg-blue-700">Save Update</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="fixed bottom-4 right-4 z-50"></div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+  <script src="common.js"></script>
+  <script src="tasks.js"></script>
+</body>
+</html>
